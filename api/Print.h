@@ -60,6 +60,10 @@ class Print
     // should be overriden by subclasses with buffering
     virtual int availableForWrite() { return 0; }
 
+    // Some Arduino ports add a printf method (for instance ESP32 and NRF52-Adafruit)
+    size_t printf(const char *format, ...)
+        __attribute__((format(printf, 2, 3)));
+
     size_t print(const __FlashStringHelper *);
     size_t print(const String &);
     size_t print(const char[]);
